@@ -3,13 +3,71 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(direct = matrix()) {
+    # object that holds inverted matrix (if calculated already)
+    inverted <- NULL;
+    
+    # direct matrix operations :
+    # -- setter
+    set <- function(other){
+        direct   <<- other;
+        inverted <<- NULL
+    }
+    # -- getter
+    get <- function(){
+        direct;
+    }
+    
+    # inverted matrix operations
+    # -- setter
+    set.inverted <- function(inverted)
+    {
+        inverted <<- inverted;
+    }
+    # -- getter    
+    get.inverted <- function()
+    {
+        inverted;
+    }
 
+    list(set = set, get = get, set.inverted = set.inverted, get.inverted = get.inverted);    
 }
 
 
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    ## Return a matrix that is the inverse of 'x'
+        
+    # check parameter validity
+    # -- parameter is not null
+    if(is.null(x))
+        stop("null reference. object is not set");
+    
+    # -- parameter is of special class created by makeCacheMatrix
+    if((class(x) != "list") || (is.null("x$get.inverted") == T))
+        stop("type mismatch. parameter is not of 'special matrix' type");
+    
+    # try to get cached value. 
+    inverted.matrix <- x$get.inverted();
+    
+    
+    # if cahced value exist then return it
+    if(!is.null(inverted.matrix)) {
+        message("getting cached data");
+        return(inverted.matrix);
+    }
+            
+    # being here means that there was no cached value : calculate and stored inverted matrix    
+    message("compute inversion matrix");    
+    # -- get original matrix
+    matrix <- x$get();    
+    # -- calculate inverted matrix
+    inverted.matrix <- solve(matrix);
+    
+    # -- store value inside instance so next call will get it from object's cache 
+    x$set.inverted(inverted.matrix);    
+    
+    # -- return - last evaluated object will be result of the function execution
+    inverted.matrix;
 }
