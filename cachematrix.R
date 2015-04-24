@@ -6,9 +6,9 @@
 ## Creates object as list and adds to the list member variables and methods for their manipulation
 ## -- inverted - mvariable that holds inverted matrix
 ## -- set - method. setter for matrix. clears up inverted matrix variable
-## -- get method. getter for matrix
+## -- get - method. getter for matrix
 ## -- set.inverted - method. setter for inverted variable
-## -- get.invertd - method. getter for inverted variable
+## -- get.inverted - method. getter for inverted variable
 makeCacheMatrix <- function(direct = matrix()) {
     # object that holds inverted matrix (if calculated already)
     inverted <- NULL;
