@@ -1,8 +1,14 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
-
+## Class factory pattern implementation that creates "special matrix" object  
+##
+## Creates object as list and adds to the list member variables and methods for their manipulation
+## -- inverted - mvariable that holds inverted matrix
+## -- set - method. setter for matrix. clears up inverted matrix variable
+## -- get method. getter for matrix
+## -- set.inverted - method. setter for inverted variable
+## -- get.invertd - method. getter for inverted variable
 makeCacheMatrix <- function(direct = matrix()) {
     # object that holds inverted matrix (if calculated already)
     inverted <- NULL;
@@ -34,8 +40,12 @@ makeCacheMatrix <- function(direct = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## Matrix inversion function
+##
+## verifies if passed parameter is of "special matrix" type, after that calls object's
+## inverted matrix getter. If method returns  value other than NULL it means that inversion 
+## was already perfomed once. return saved value. If method returns NULL then performe inversion, 
+## store it in object's internal variable for futire use and return newly calculated inverted matrix. 
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
         
