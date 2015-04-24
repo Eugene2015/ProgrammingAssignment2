@@ -1,5 +1,6 @@
-## Put comments here that give an overall description of what your
-## functions do
+## makeCacheMatrix - creates "special matrix" object that can cache assigned matrix inverted value 
+## cacheSolve - function that returns "special matrix" inversion.  stores once calculated inverted matrix
+##              in cache and on sequntial calls returns stored /cached/ value
 
 ## Class factory pattern implementation that creates "special matrix" object  
 ##
